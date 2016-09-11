@@ -35,8 +35,8 @@ app.post('/contact/send', function(req, res) {
   });
 
   var mailOptions = {
-    from: 'Nicholas <nicholasraphaelgt@gmail.com>',
-    to: 'nicholasraphaelgt@gmail.com',
+    from: 'Nicholas',
+    to: '',
     subject: 'Web submission',
     text: 'You have a submission from ' + req.body.name + ' Email ' + req.body.email + 'Message' + req.body.message,
     html: '<p>You have a submission from</p>'
