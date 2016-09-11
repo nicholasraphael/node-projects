@@ -1,7 +1,15 @@
-# Logs
-logs
+lib-cov
+*.seed
 *.log
-npm-debug.log*
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
 
-* Ignores the node_modules directory
-*node_modules/*
+pids
+logs
+results
+build
+
+node_modules
