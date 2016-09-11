@@ -2,3 +2,5 @@
 logs
 *.log
 npm-debug.log*
+
+* Ignores the node_modules directory
