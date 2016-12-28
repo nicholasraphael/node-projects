@@ -4,20 +4,22 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require("express-session");
-var multer = require("multer");
-var upload = multer({dest: './uploads'});
+var session = require('express-session');
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' })
+var expressValidator = require('express-validator');
 
-var expressValidator = require("express-validator");
-
-var mongo = require("mongodb");
-var db = require("monk")("localhost/nodeblog");
+var mongo = require('mongodb');
+var db = require('monk')('localhost/nodeblog');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var posts = require('./routes/posts');
+var categories = require('./routes/categories');
 
 var app = express();
+
 app.locals.moment = require('moment');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -30,14 +32,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Handle Sessions
+// Express Session
 app.use(session({
-  secret:'secret',
-  saveUninitialized: true,
-  resave: true
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
 }));
 
-//validator
+// Express Validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
@@ -55,21 +57,23 @@ app.use(expressValidator({
   }
 }));
 
-//Connect-flash
+
+// Connect-Flash
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
 
-//make database accesible to router
-app.use(function(req, res, next) {
-  req.db = db;
-  next();
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
 });
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/posts', posts);
+app.use('/categories', categories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

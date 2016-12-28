@@ -1,7 +1,7 @@
 body {
   font: 15px Helvetica, Arial, sans-serif;
-  background: #FAFAFA;
-  color:#7f8c8d;
+  background: #f4f4f4;
+  color:#666;
 }
 
 .logo{
@@ -36,7 +36,6 @@ p{
 	margin:0;
 }
 
-
 nav{
 	background:#404137;
 	color:#fff;
@@ -63,8 +62,54 @@ nav a.current, nav a:hover{
 	color:#000;
 }
 
-.post a {
+.meta{
+	padding:7px;
+	border:1px solid #ccc;
+	background:#ccc;
+	margin-bottom:10px;
+}
+
+a.more{
+	display:block;
+	width:80px;
+	background:#404137;
+	color:#fff;
+	padding:10px;
+	margin-top:30px;
+	text-decoration: none;
+}
+
+.post{
+	border-bottom:1px solid #ccc;
+	padding-bottom:20px;
+}
+
+.post h1 a{
 	color:#666;
 	text-decoration: none;
 }
 
+input, select, textarea{
+	margin-bottom:15px;
+}
+
+label{
+	display:inline-block;
+	width:180px;
+}
+
+input[type='text'], select, textarea{
+	padding:3px;
+	height:20px;
+	width:200px;
+	border:1px #ccc solid;
+}
+
+select{
+	height:28px;
+}
+
+textarea{
+	height:70px;
+	width:400px;
+}
